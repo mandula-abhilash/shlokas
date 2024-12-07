@@ -75,14 +75,18 @@ export default function Navigation() {
                     className="gap-2"
                   >
                     <div
-                      className={`h-2 w-2 rounded-full ${
+                      className={`h-2 w-2 rounded-full cursor-pointer ${
                         lang.value === language
                           ? "bg-primary"
                           : "bg-transparent"
                       }`}
                     />
                     <span
-                      className={lang.value === language ? "font-medium" : ""}
+                      className={
+                        lang.value === language
+                          ? "font-medium cursor-pointer"
+                          : "cursor-pointer"
+                      }
                     >
                       {lang.label}
                     </span>
