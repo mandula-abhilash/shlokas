@@ -35,7 +35,7 @@ export default function Login() {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      <main className="container mx-auto px-4 py-8 mt-10 md:mt-20">
+      <main className="mx-auto px-4 py-8 mt-10 md:mt-20">
         <div className="max-w-md mx-auto">
           <Card className="p-6">
             <div className="text-center mb-6">
