@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useLanguage } from "./language-provider";
-import { Menu, Moon, Sun, Languages, Users, LogIn, X } from "lucide-react";
+import { Menu, Moon, Sun, Languages, Users, LogIn, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -12,7 +12,6 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetClose,
 } from "@/components/ui/sheet";
 import {
   DropdownMenu,
@@ -20,6 +19,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import MobileMenu from "./mobile-menu";
 
 export default function Navigation() {
   const { theme, setTheme } = useTheme();
@@ -74,16 +74,25 @@ export default function Navigation() {
             </Button>
 
             <Link href="/about-us">
-              <Button variant="ghost">About Us</Button>
+              <Button variant="ghost" className="flex items-center gap-2">
+                <Info className="h-4 w-4" />
+                About Us
+              </Button>
             </Link>
 
-            {/* <Link href="/contributors">
-              <Button variant="ghost">Contributors</Button>
-            </Link> */}
+            <Link href="/contributors">
+              <Button variant="ghost" className="flex items-center gap-2">
+                <Users className="h-4 w-4" />
+                Contributors
+              </Button>
+            </Link>
 
-            {/* <Link href="/login">
-              <Button>Login</Button>
-            </Link> */}
+            <Link href="/login">
+              <Button variant="ghost" className="flex items-center gap-2">
+                <LogIn className="h-4 w-4" />
+                Login
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu */}
@@ -95,81 +104,11 @@ export default function Navigation() {
                   <span className="sr-only">Open menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent>
+              <SheetContent side="left" className="w-full sm:max-w-md">
                 <SheetHeader>
                   <SheetTitle>Menu</SheetTitle>
                 </SheetHeader>
-                <div className="flex flex-col gap-4 mt-6">
-                  <Link href="/about-us">
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-start"
-                      asChild
-                    >
-                      <SheetClose className="w-full justify-start">
-                        About Us
-                      </SheetClose>
-                    </Button>
-                  </Link>
-
-                  {/* <Link href="/contributors">
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-start"
-                      asChild
-                    >
-                      <SheetClose className="w-full justify-start flex items-center gap-2">
-                        <Users className="h-4 w-4" />
-                        Contributors
-                      </SheetClose>
-                    </Button>
-                  </Link>
-
-                  <Link href="/login">
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-start"
-                      asChild
-                    >
-                      <SheetClose className="w-full justify-start flex items-center gap-2">
-                        <LogIn className="h-4 w-4" />
-                        Login
-                      </SheetClose>
-                    </Button>
-                  </Link> */}
-
-                  <div className="flex items-center gap-2 px-4 py-2">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() =>
-                        setTheme(theme === "dark" ? "light" : "dark")
-                      }
-                      className="w-9 h-9"
-                    >
-                      <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                      <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                    </Button>
-
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon" className="w-9 h-9">
-                          <Languages className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        {languages.map((lang) => (
-                          <DropdownMenuItem
-                            key={lang.value}
-                            onClick={() => setLanguage(lang.value)}
-                          >
-                            {lang.label}
-                          </DropdownMenuItem>
-                        ))}
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </div>
-                </div>
+                <MobileMenu theme={theme} setTheme={setTheme} />
               </SheetContent>
             </Sheet>
           </div>
