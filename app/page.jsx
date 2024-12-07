@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import SlokaCard from '@/components/sloka-card';
-import SearchBar from '@/components/search-bar';
-import Navigation from '@/components/navigation';
-import { slokas } from '@/lib/slokas';
-import { useLanguage } from '@/components/language-provider';
+import { useState } from "react";
+import SlokaCard from "@/components/sloka-card";
+import SearchBar from "@/components/search-bar";
+import Navigation from "@/components/navigation";
+import { slokas } from "@/lib/slokas";
+import { useLanguage } from "@/components/language-provider";
 
 export default function Home() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedSlokaIndex, setSelectedSlokaIndex] = useState(0);
   const { language } = useLanguage();
 
@@ -22,13 +22,13 @@ export default function Home() {
   });
 
   const handlePrevious = () => {
-    setSelectedSlokaIndex((prev) => 
+    setSelectedSlokaIndex((prev) =>
       prev > 0 ? prev - 1 : filteredSlokas.length - 1
     );
   };
 
   const handleNext = () => {
-    setSelectedSlokaIndex((prev) => 
+    setSelectedSlokaIndex((prev) =>
       prev < filteredSlokas.length - 1 ? prev + 1 : 0
     );
   };
@@ -40,19 +40,19 @@ export default function Home() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-background">
       <Navigation />
-      
+
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="flex-shrink-0 text-center py-4">
+        {/* <header className="flex-shrink-0 text-center py-4">
           <div className="inline-flex items-center justify-center gap-3 mt-3 transition duration-300 hover:text-primary/70">
             <h1 className="text-3xl font-bold tracking-tight text-primary">
               Shlokas for Kids
             </h1>
           </div>
-        </header>
+        </header> */}
 
         <div className="flex-1 flex min-h-0 relative">
           {/* Sidebar for desktop */}
-          <div 
+          <div
             className={`
               hidden lg:flex
               w-[320px]
@@ -62,10 +62,7 @@ export default function Home() {
             `}
           >
             <div className="p-4">
-              <SearchBar 
-                query={searchQuery} 
-                setQuery={setSearchQuery}
-              />
+              <SearchBar query={searchQuery} setQuery={setSearchQuery} />
             </div>
             <div className="flex-1 overflow-y-auto px-4 pb-4">
               <div className="space-y-3">
@@ -76,8 +73,8 @@ export default function Home() {
                       onClick={() => handleSlokaClick(index)}
                       className="w-full text-left"
                     >
-                      <SlokaCard 
-                        sloka={sloka} 
+                      <SlokaCard
+                        sloka={sloka}
                         language={language}
                         isPreview={true}
                         variant="compact"
@@ -96,7 +93,7 @@ export default function Home() {
           </div>
 
           {/* Main content area */}
-          <div 
+          <div
             className={`
               flex-1 
               flex flex-col
@@ -108,15 +105,12 @@ export default function Home() {
               <>
                 {/* Mobile search */}
                 <div className="lg:hidden p-4 border-b bg-card/50 backdrop-blur-sm">
-                  <SearchBar 
-                    query={searchQuery} 
-                    setQuery={setSearchQuery}
-                  />
+                  <SearchBar query={searchQuery} setQuery={setSearchQuery} />
                 </div>
 
                 <div className="flex-1 p-4 lg:p-4 overflow-y-auto">
-                  <SlokaCard 
-                    sloka={filteredSlokas[selectedSlokaIndex]} 
+                  <SlokaCard
+                    sloka={filteredSlokas[selectedSlokaIndex]}
                     language={language}
                     isPreview={false}
                     variant="full"

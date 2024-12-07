@@ -81,18 +81,18 @@ export default function SlokaCard({
                       variant="ghost"
                       size="icon"
                       onClick={onPrevious}
-                      className="h-8 w-8"
+                      className="h-8 w-8 bg-card border border-border hover:bg-accent hover:text-accent-foreground"
                     >
                       <ChevronLeft className="h-4 w-4" />
                     </Button>
-                    <span className="text-sm text-muted-foreground">
+                    <span className="text-sm border border-border bg-card px-3 py-1 rounded-md">
                       {current} of {total}
                     </span>
                     <Button
                       variant="ghost"
                       size="icon"
                       onClick={onNext}
-                      className="h-8 w-8"
+                      className="h-8 w-8 bg-card border border-border hover:bg-accent hover:text-accent-foreground"
                     >
                       <ChevronRight className="h-4 w-4" />
                     </Button>
@@ -119,12 +119,12 @@ export default function SlokaCard({
                         src={sloka.deityImage}
                         alt={`${sloka.title[language]} Deity`}
                         fill
-                        className="object-cover dark:brightness-90 dark:contrast-125"
+                        className="object-cover dark:brightness-90 dark:contrast-125 animate-pulse"
                       />
                     </div>
                   </div>
                 )}
-
+                {/* 
                 <Button
                   variant="outline"
                   className="w-full mt-4"
@@ -136,17 +136,17 @@ export default function SlokaCard({
                     <ChevronDown className="h-4 w-4 mr-2" />
                   )}
                   {showMobileDetails ? "Hide Details" : "Show Details"}
-                </Button>
+                </Button> */}
 
-                {showMobileDetails && (
-                  <div>
-                    <SlokaDetails
-                      sloka={sloka}
-                      language={language}
-                      isMobile={true}
-                    />
-                  </div>
-                )}
+                {/* {showMobileDetails && ( */}
+                <div>
+                  <SlokaDetails
+                    sloka={sloka}
+                    language={language}
+                    isMobile={true}
+                  />
+                </div>
+                {/* )} */}
               </div>
 
               {sloka.deityImage && (
@@ -156,7 +156,7 @@ export default function SlokaCard({
                       src={sloka.deityImage}
                       alt={`${sloka.title[language]} Deity`}
                       fill
-                      className="object-cover dark:brightness-90 dark:contrast-125"
+                      className="object-cover dark:brightness-90 dark:contrast-125 animate-pulse"
                     />
                   </div>
                 </div>
