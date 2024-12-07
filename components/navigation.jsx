@@ -43,25 +43,6 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="w-9 h-9">
-                  <Languages className="h-4 w-4" />
-                  <span className="sr-only">Switch language</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                {languages.map((lang) => (
-                  <DropdownMenuItem
-                    key={lang.value}
-                    onClick={() => setLanguage(lang.value)}
-                  >
-                    {lang.label}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
             <Button
               variant="ghost"
               size="icon"
@@ -73,6 +54,43 @@ export default function Navigation() {
               <span className="sr-only">Toggle theme</span>
             </Button>
 
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="w-auto px-3 h-9 gap-2"
+                >
+                  <Languages className="h-4 w-4" />
+                  <span className="text-sm">
+                    {languages.find((l) => l.value === language)?.label}
+                  </span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-[140px]">
+                {languages.map((lang) => (
+                  <DropdownMenuItem
+                    key={lang.value}
+                    onClick={() => setLanguage(lang.value)}
+                    className="gap-2"
+                  >
+                    <div
+                      className={`h-2 w-2 rounded-full ${
+                        lang.value === language
+                          ? "bg-primary"
+                          : "bg-transparent"
+                      }`}
+                    />
+                    <span
+                      className={lang.value === language ? "font-medium" : ""}
+                    >
+                      {lang.label}
+                    </span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <Link href="/about-us">
               <Button variant="ghost" className="flex items-center gap-2">
                 <Info className="h-4 w-4" />
@@ -80,7 +98,7 @@ export default function Navigation() {
               </Button>
             </Link>
 
-            <Link href="/contributors">
+            {/* <Link href="/contributors">
               <Button variant="ghost" className="flex items-center gap-2">
                 <Users className="h-4 w-4" />
                 Contributors
@@ -92,7 +110,7 @@ export default function Navigation() {
                 <LogIn className="h-4 w-4" />
                 Login
               </Button>
-            </Link>
+            </Link> */}
           </div>
 
           {/* Mobile Menu */}

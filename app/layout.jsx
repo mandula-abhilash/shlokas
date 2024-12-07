@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} ${mallanna.variable}`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >

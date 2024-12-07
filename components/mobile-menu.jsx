@@ -32,9 +32,15 @@ export default function MobileMenu({ theme, setTheme }) {
                 />
                 <Label
                   htmlFor={lang.value}
-                  className="flex flex-col items-center justify-between rounded-md border border-muted bg-transparent p-3 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                  className="flex flex-col items-center justify-between rounded-md border border-muted bg-transparent p-3 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary [&:has([data-state=checked])]:bg-primary/5"
                 >
-                  <span className="text-sm font-normal">{lang.label}</span>
+                  <span
+                    className={`text-sm ${
+                      language === lang.value ? "font-medium" : "font-normal"
+                    }`}
+                  >
+                    {lang.label}
+                  </span>
                 </Label>
               </div>
             ))}
@@ -52,7 +58,7 @@ export default function MobileMenu({ theme, setTheme }) {
           </Button>
         </Link>
 
-        <Link href="/contributors" className="w-full">
+        {/* <Link href="/contributors" className="w-full">
           <Button variant="ghost" className="w-full justify-start h-10" asChild>
             <SheetClose className="w-full justify-start flex items-center gap-2">
               <Users className="h-4 w-4" />
@@ -68,7 +74,7 @@ export default function MobileMenu({ theme, setTheme }) {
               Login
             </SheetClose>
           </Button>
-        </Link>
+        </Link> */}
       </div>
 
       <div className="border-t pt-4">
