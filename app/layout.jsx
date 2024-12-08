@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Inter, Mallanna } from "next/font/google";
+import { Inter, Mallanna, Noto_Sans_Gujarati } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/language-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,6 +11,11 @@ const mallanna = Mallanna({
   subsets: ["telugu"],
   variable: "--font-mallanna",
 });
+const notoSansGujarati = Noto_Sans_Gujarati({
+  weight: ["400", "700"],
+  subsets: ["gujarati"],
+  variable: "--font-gujarati",
+});
 
 export const metadata = {
   title: "Shlokas for Children",
@@ -20,7 +25,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} ${mallanna.variable}`}>
+      <body
+        className={`${inter.className} ${mallanna.variable} ${notoSansGujarati.variable}`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

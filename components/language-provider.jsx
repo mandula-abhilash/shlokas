@@ -1,21 +1,22 @@
-'use client';
+"use client";
 
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from "react";
 
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState('english');
+  const [language, setLanguage] = useState("english");
 
   const languages = [
-    { value: 'english', label: 'English' },
-    { value: 'telugu', label: 'తెలుగు' },
+    { value: "english", label: "English" },
+    { value: "telugu", label: "తెలుగు" },
+    { value: "gujarati", label: "ગુજરાતી" },
   ];
 
   const value = {
     language,
     setLanguage,
-    languages
+    languages,
   };
 
   return (
@@ -28,7 +29,7 @@ export function LanguageProvider({ children }) {
 export function useLanguage() {
   const context = useContext(LanguageContext);
   if (!context) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+    throw new Error("useLanguage must be used within a LanguageProvider");
   }
   return context;
 }

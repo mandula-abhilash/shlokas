@@ -25,7 +25,9 @@ export default function SlokaCard({
   const [showMobileDetails, setShowMobileDetails] = useState(false);
 
   const getLanguageClass = (lang, size) => {
-    return lang === "telugu" ? `text-telugu ${size}` : size;
+    if (lang === "telugu") return `text-telugu ${size}`;
+    if (lang === "gujarati") return `text-gujarati ${size}`;
+    return size;
   };
 
   if (variant === "compact") {
@@ -124,21 +126,6 @@ export default function SlokaCard({
                     </div>
                   </div>
                 )}
-                {/* 
-                <Button
-                  variant="outline"
-                  className="w-full mt-4"
-                  onClick={() => setShowMobileDetails(!showMobileDetails)}
-                >
-                  {showMobileDetails ? (
-                    <ChevronUp className="h-4 w-4 mr-2" />
-                  ) : (
-                    <ChevronDown className="h-4 w-4 mr-2" />
-                  )}
-                  {showMobileDetails ? "Hide Details" : "Show Details"}
-                </Button> */}
-
-                {/* {showMobileDetails && ( */}
                 <div>
                   <SlokaDetails
                     sloka={sloka}
@@ -146,7 +133,6 @@ export default function SlokaCard({
                     isMobile={true}
                   />
                 </div>
-                {/* )} */}
               </div>
 
               {sloka.deityImage && (

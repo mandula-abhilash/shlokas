@@ -17,9 +17,14 @@ export default function SlokaDetails({ sloka, language, isMobile = false }) {
     const baseClass = isMobile
       ? "text-muted-foreground leading-relaxed"
       : "text-muted-foreground leading-relaxed";
-    return language === "telugu"
-      ? `text-telugu ${size} ${baseClass}`
-      : `${size} ${baseClass}`;
+
+    if (language === "telugu") {
+      return `text-telugu ${size} ${baseClass}`;
+    }
+    if (language === "gujarati") {
+      return `text-gujarati ${size} ${baseClass}`;
+    }
+    return `${size} ${baseClass}`;
   };
 
   return (
