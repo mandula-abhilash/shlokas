@@ -53,6 +53,13 @@ Explore, learn, and share with family and friends to keep the essence of **Sanat
 
 ---
 
+## **How to Deploy**
+
+- Clone repository
+- Install dependencies
+- Build npm run build
+- Deploy pm2 start "npx serve -s out -l 3001" --name "slokas-app-client"
+
 ## **Contact Us**
 
 For any queries, feedback, or contributions, feel free to reach out:
