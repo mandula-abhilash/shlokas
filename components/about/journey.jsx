@@ -31,8 +31,8 @@ export default function AboutJourney() {
                 <Card className="p-6 bg-background/50 backdrop-blur-sm">
                   <h3 className="text-lg font-semibold mb-2">The Beginning</h3>
                   <p className="text-muted-foreground">
-                    Started at the Brambhika Sametha Mallikarjuna Swamy Temple,
-                    distributing sloka books during Dasara Pooja.
+                    Started at the Bramarambhika Sametha Mallikarjuna Swamy
+                    Temple, distributing sloka books during Dasara Pooja.
                   </p>
                 </Card>
 

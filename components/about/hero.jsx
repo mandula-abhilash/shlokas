@@ -10,7 +10,7 @@ export default function AboutHero() {
           <Card className="relative aspect-[4/3] overflow-hidden">
             <Image
               src="/assets/images/bramarambhika-mallana-swamy-devasthanam.jpg"
-              alt="Brambhika Sametha Mallikarjuna Swamy Temple"
+              alt="Bramarambhika Sametha Mallikarjuna Swamy Temple"
               fill
               className="object-cover hover:scale-105 transition-transform duration-500"
             />
@@ -23,10 +23,10 @@ export default function AboutHero() {
                 A Sanatana Dharma Effort: Shlokas for Children{" "}
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                At Brambhika Sametha Mallikarjuna Swamy Temple, we're dedicated
-                to keeping Sanatana Dharma alive through the teaching of shlokas
-                to children, bridging ancient wisdom with modern learning
-                approaches.
+                At Bramarambhika Sametha Mallikarjuna Swamy Temple, we're
+                dedicated to keeping Sanatana Dharma alive through the teaching
+                of shlokas to children, bridging ancient wisdom with modern
+                learning approaches.
               </p>
             </div>
 
