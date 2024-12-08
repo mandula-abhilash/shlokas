@@ -3,6 +3,7 @@ import { Inter, Mallanna } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/language-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { AnalyticsProvider } from "@/components/providers/analytics-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 const mallanna = Mallanna({
@@ -27,7 +28,9 @@ export default function RootLayout({ children }) {
           disableTransitionOnChange
         >
           <TooltipProvider>
-            <LanguageProvider>{children}</LanguageProvider>
+            <LanguageProvider>
+              <AnalyticsProvider>{children}</AnalyticsProvider>
+            </LanguageProvider>
           </TooltipProvider>
         </ThemeProvider>
       </body>

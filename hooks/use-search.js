@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { slokas } from "@/lib/slokas";
+import { logSearch, logError } from "@/lib/analytics";
 
 export function useSearch() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,6 +16,9 @@ export function useSearch() {
       if (!searchQuery.trim()) {
         setFilteredResults(slokas);
       } else {
+        // Log search event
+        logSearch(searchQuery);
+
         const searchText = searchQuery.toLowerCase();
         const filtered = slokas.filter((sloka) => {
           const matchInLanguage = (language) =>
@@ -27,8 +31,10 @@ export function useSearch() {
         setFilteredResults(filtered);
       }
     } catch (err) {
-      setError("An error occurred while searching");
+      const errorMessage = "An error occurred while searching";
+      setError(errorMessage);
       setFilteredResults([]);
+      logError(err, "SearchComponent");
     } finally {
       setIsSearching(false);
     }
