@@ -19,8 +19,8 @@ export default function AboutHero() {
           {/* Content Container */}
           <div className="space-y-8">
             <div className="space-y-6">
-              <h1 className="text-4xl lg:text-5xl font-bold tracking-tight">
-                Preserving Sacred Knowledge for Future Generations
+              <h1 className="text-4xl lg:text-5xl font-bold tracking-tight leading-relaxed">
+                A Sanatana Dharma Effort: Shlokas for Children{" "}
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 At Brambhika Sametha Mallikarjuna Swamy Temple, we're dedicated
@@ -32,15 +32,13 @@ export default function AboutHero() {
 
             <div className="grid sm:grid-cols-2 gap-4">
               <Card className="p-4 bg-primary/5 border-primary/10">
-                <div className="text-3xl font-bold text-primary mb-1">
-                  1000+
-                </div>
+                <div className="text-3xl font-bold text-primary mb-1">2</div>
                 <div className="text-sm text-muted-foreground">
-                  Children Reached
+                  Languages Available
                 </div>
               </Card>
               <Card className="p-4 bg-primary/5 border-primary/10">
-                <div className="text-3xl font-bold text-primary mb-1">50+</div>
+                <div className="text-3xl font-bold text-primary mb-1">18</div>
                 <div className="text-sm text-muted-foreground">
                   Sacred Shlokas
                 </div>
