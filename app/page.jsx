@@ -1,25 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SlokaCard from "@/components/sloka-card";
 import SearchBar from "@/components/search-bar";
 import Navigation from "@/components/navigation";
-import { slokas } from "@/lib/slokas";
 import { useLanguage } from "@/components/language-provider";
+import { useSearch } from "@/hooks/use-search";
 
 export default function Home() {
-  const [searchQuery, setSearchQuery] = useState("");
   const [selectedSlokaIndex, setSelectedSlokaIndex] = useState(0);
   const { language } = useLanguage();
+  const {
+    searchQuery,
+    setSearchQuery,
+    filteredSlokas,
+    isSearching,
+    error,
+    clearSearch,
+  } = useSearch();
 
-  const filteredSlokas = slokas.filter((sloka) => {
-    const searchText = searchQuery.toLowerCase();
-    return (
-      sloka.title[language].toLowerCase().includes(searchText) ||
-      sloka.text[language].toLowerCase().includes(searchText) ||
-      sloka.meaning[language].toLowerCase().includes(searchText)
-    );
-  });
+  // Reset selected index when filtered results change
+  useEffect(() => {
+    setSelectedSlokaIndex(0);
+  }, [filteredSlokas]);
 
   const handlePrevious = () => {
     setSelectedSlokaIndex((prev) =>
@@ -62,7 +65,13 @@ export default function Home() {
             `}
           >
             <div className="p-4">
-              <SearchBar query={searchQuery} setQuery={setSearchQuery} />
+              <SearchBar
+                query={searchQuery}
+                setQuery={setSearchQuery}
+                isSearching={isSearching}
+                error={error}
+                onClear={clearSearch}
+              />
             </div>
             <div className="flex-1 overflow-y-auto px-4 pb-4">
               <div className="space-y-3">
@@ -84,7 +93,8 @@ export default function Home() {
                 ) : (
                   <div className="text-center py-8">
                     <p className="text-sm text-muted-foreground">
-                      No shlokas found. Try a different search term.
+                      {error ||
+                        "No shlokas found. Try a different search term."}
                     </p>
                   </div>
                 )}
@@ -101,31 +111,37 @@ export default function Home() {
               bg-background/50
             `}
           >
-            {filteredSlokas.length > 0 ? (
-              <>
-                {/* Mobile search */}
-                <div className="lg:hidden p-4 border-b bg-card/50 backdrop-blur-sm">
-                  <SearchBar query={searchQuery} setQuery={setSearchQuery} />
-                </div>
+            {/* Mobile search */}
+            <div className="lg:hidden p-4 border-b bg-card/50 backdrop-blur-sm">
+              <SearchBar
+                query={searchQuery}
+                setQuery={setSearchQuery}
+                isSearching={isSearching}
+                error={error}
+                onClear={clearSearch}
+              />
+            </div>
 
-                <div className="flex-1 p-4 lg:p-4 overflow-y-auto">
-                  <SlokaCard
-                    sloka={filteredSlokas[selectedSlokaIndex]}
-                    language={language}
-                    isPreview={false}
-                    variant="full"
-                    onPrevious={handlePrevious}
-                    onNext={handleNext}
-                    total={filteredSlokas.length}
-                    current={selectedSlokaIndex + 1}
-                  />
+            <div className="flex-1 p-4 lg:p-4 overflow-y-auto">
+              {filteredSlokas.length > 0 ? (
+                <SlokaCard
+                  sloka={filteredSlokas[selectedSlokaIndex]}
+                  language={language}
+                  isPreview={false}
+                  variant="full"
+                  onPrevious={handlePrevious}
+                  onNext={handleNext}
+                  total={filteredSlokas.length}
+                  current={selectedSlokaIndex + 1}
+                />
+              ) : (
+                <div className="h-full flex items-center justify-center text-muted-foreground p-4 text-center">
+                  <p>
+                    {error || "No shlokas found. Try a different search term."}
+                  </p>
                 </div>
-              </>
-            ) : (
-              <div className="h-full flex items-center justify-center text-muted-foreground p-4 text-center">
-                <p>No shlokas found. Try a different search term.</p>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>
