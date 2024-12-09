@@ -38,7 +38,7 @@ export default function AboutUs() {
                   <Mail className="h-4 w-4" />
                   contact@visdak.com
                 </a>
-                <a
+                {/* <a
                   href="https://wa.me/918050301614"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -46,7 +46,7 @@ export default function AboutUs() {
                 >
                   <Phone className="h-4 w-4" />
                   +91 80503 01614
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

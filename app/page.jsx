@@ -38,8 +38,20 @@ export default function Home() {
     });
   };
 
+  const handlePrevious = () => {
+    setSelectedSlokaIndex((prev) => {
+      const prevIndex = prev > 0 ? prev - 1 : filteredSlokas.length - 1;
+      return prevIndex;
+    });
+  };
+
   const handleStartSlideshow = () => {
-    startSlideshow(handleNext);
+    startSlideshow(() => {
+      setSelectedSlokaIndex((prev) => {
+        const nextIndex = prev < filteredSlokas.length - 1 ? prev + 1 : 0;
+        return nextIndex;
+      });
+    });
   };
 
   const handleStopSlideshow = () => {
@@ -139,6 +151,8 @@ export default function Home() {
                     variant="full"
                     total={filteredSlokas.length}
                     current={selectedSlokaIndex + 1}
+                    onPrevious={handlePrevious}
+                    onNext={handleNext}
                   />
                 </>
               ) : (
