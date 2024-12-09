@@ -6,6 +6,8 @@ import SearchBar from "@/components/search-bar";
 import Navigation from "@/components/navigation";
 import { useLanguage } from "@/components/language-provider";
 import { useSearch } from "@/hooks/use-search";
+import { SlideshowControls } from "@/components/slideshow-controls";
+import { useSlideshow } from "@/hooks/use-slideshow";
 
 export default function Home() {
   const [selectedSlokaIndex, setSelectedSlokaIndex] = useState(0);
@@ -18,52 +20,55 @@ export default function Home() {
     error,
     clearSearch,
   } = useSearch();
+  const {
+    isPlaying,
+    timeLeft,
+    interval,
+    startSlideshow,
+    stopSlideshow,
+    updateInterval,
+    getIsPlaying,
+    startTimer,
+  } = useSlideshow();
+
+  const handleNext = () => {
+    setSelectedSlokaIndex((prev) => {
+      const nextIndex = prev < filteredSlokas.length - 1 ? prev + 1 : 0;
+      return nextIndex;
+    });
+  };
+
+  const handleStartSlideshow = () => {
+    startSlideshow(handleNext);
+  };
+
+  const handleStopSlideshow = () => {
+    stopSlideshow();
+  };
+
+  const handleIntervalChange = (newInterval) => {
+    updateInterval(newInterval);
+  };
 
   // Reset selected index when filtered results change
   useEffect(() => {
     setSelectedSlokaIndex(0);
   }, [filteredSlokas]);
 
-  const handlePrevious = () => {
-    setSelectedSlokaIndex((prev) =>
-      prev > 0 ? prev - 1 : filteredSlokas.length - 1
-    );
-  };
-
-  const handleNext = () => {
-    setSelectedSlokaIndex((prev) =>
-      prev < filteredSlokas.length - 1 ? prev + 1 : 0
-    );
-  };
-
-  const handleSlokaClick = (index) => {
-    setSelectedSlokaIndex(index);
-  };
+  // start the timer for the next slide now that state and UI have updated.
+  useEffect(() => {
+    if (isPlaying && filteredSlokas.length > 0) {
+      startTimer();
+    }
+  }, [isPlaying, selectedSlokaIndex, filteredSlokas.length, startTimer]);
 
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-background">
       <Navigation />
 
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* <header className="flex-shrink-0 text-center py-4">
-          <div className="inline-flex items-center justify-center gap-3 mt-3 transition duration-300 hover:text-primary/70">
-            <h1 className="text-3xl font-bold tracking-tight text-primary">
-              Shlokas for Kids
-            </h1>
-          </div>
-        </header> */}
-
         <div className="flex-1 flex min-h-0 relative">
-          {/* Sidebar for desktop */}
-          <div
-            className={`
-              hidden lg:flex
-              w-[320px]
-              flex-col
-              border-r bg-card/50
-              h-full
-            `}
-          >
+          <div className="hidden lg:flex w-[320px] flex-col border-r bg-card/50 h-full">
             <div className="p-4">
               <SearchBar
                 query={searchQuery}
@@ -79,7 +84,7 @@ export default function Home() {
                   filteredSlokas.map((sloka, index) => (
                     <button
                       key={sloka.id}
-                      onClick={() => handleSlokaClick(index)}
+                      onClick={() => setSelectedSlokaIndex(index)}
                       className="w-full text-left"
                     >
                       <SlokaCard
@@ -102,16 +107,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Main content area */}
-          <div
-            className={`
-              flex-1 
-              flex flex-col
-              overflow-hidden 
-              bg-background/50
-            `}
-          >
-            {/* Mobile search */}
+          <div className="flex-1 flex flex-col overflow-hidden bg-background/50">
             <div className="lg:hidden p-4 border-b bg-card/50 backdrop-blur-sm">
               <SearchBar
                 query={searchQuery}
@@ -124,16 +120,27 @@ export default function Home() {
 
             <div className="flex-1 p-4 lg:p-4 overflow-y-auto">
               {filteredSlokas.length > 0 ? (
-                <SlokaCard
-                  sloka={filteredSlokas[selectedSlokaIndex]}
-                  language={language}
-                  isPreview={false}
-                  variant="full"
-                  onPrevious={handlePrevious}
-                  onNext={handleNext}
-                  total={filteredSlokas.length}
-                  current={selectedSlokaIndex + 1}
-                />
+                <>
+                  <div className="mb-4">
+                    <SlideshowControls
+                      isPlaying={isPlaying}
+                      interval={interval}
+                      timeLeft={timeLeft}
+                      onStart={handleStartSlideshow}
+                      onPause={handleStopSlideshow}
+                      onStop={handleStopSlideshow}
+                      onIntervalChange={handleIntervalChange}
+                    />
+                  </div>
+                  <SlokaCard
+                    sloka={filteredSlokas[selectedSlokaIndex]}
+                    language={language}
+                    isPreview={false}
+                    variant="full"
+                    total={filteredSlokas.length}
+                    current={selectedSlokaIndex + 1}
+                  />
+                </>
               ) : (
                 <div className="h-full flex items-center justify-center text-muted-foreground p-4 text-center">
                   <p>
