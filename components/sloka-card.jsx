@@ -2,15 +2,10 @@
 
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
-import Image from "next/image";
+import { ImageWithFallback } from "@/components/image-with-fallback";
 import SlokaDetails from "./sloka-details";
 import { Button } from "@/components/ui/button";
-import {
-  ChevronDown,
-  ChevronUp,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function SlokaCard({
   sloka,
@@ -22,8 +17,6 @@ export default function SlokaCard({
   total,
   current,
 }) {
-  const [showMobileDetails, setShowMobileDetails] = useState(false);
-
   const getLanguageClass = (lang, size) => {
     if (lang === "telugu") return `text-telugu ${size}`;
     if (lang === "gujarati") return `text-gujarati ${size}`;
@@ -116,12 +109,12 @@ export default function SlokaCard({
               <div className="lg:hidden space-y-4 mt-8">
                 {sloka.deityImage && (
                   <div className="flex justify-center">
-                    <div className="relative w-48 h-48 rounded-full">
-                      <Image
+                    <div className="relative w-48 h-48 rounded-full overflow-hidden">
+                      <ImageWithFallback
                         src={sloka.deityImage}
                         alt={`${sloka.title[language]} Deity`}
                         fill
-                        className="object-cover dark:brightness-90 dark:contrast-125 animate-pulse"
+                        className="object-cover dark:brightness-90 dark:contrast-125"
                       />
                     </div>
                   </div>
@@ -137,12 +130,12 @@ export default function SlokaCard({
 
               {sloka.deityImage && (
                 <div className="hidden lg:flex justify-center mt-8">
-                  <div className="relative w-48 h-48 rounded-full">
-                    <Image
+                  <div className="relative w-48 h-48 rounded-full overflow-hidden">
+                    <ImageWithFallback
                       src={sloka.deityImage}
                       alt={`${sloka.title[language]} Deity`}
                       fill
-                      className="object-cover dark:brightness-90 dark:contrast-125 animate-pulse"
+                      className="object-cover dark:brightness-90 dark:contrast-125"
                     />
                   </div>
                 </div>
