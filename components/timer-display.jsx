@@ -5,7 +5,7 @@ export function TimerDisplay({ timeLeft, interval }) {
 
   return (
     <div className="flex items-center gap-2">
-      <span className="hidden md:inline text-sm text-muted-foreground/80">
+      <span className="hidden md:inline text-sm font-semibold text-muted-foreground/80">
         Next shloka in
       </span>
       <CircularProgress value={progress} size="sm">

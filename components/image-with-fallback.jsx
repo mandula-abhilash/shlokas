@@ -20,7 +20,7 @@ export function ImageWithFallback({
         src={error ? fallbackSrc : src}
         alt={alt}
         className={cn(
-          "transition-opacity duration-300",
+          "transition-opacity animate-pulse",
           isLoading ? "opacity-0" : "opacity-100",
           className
         )}
@@ -31,9 +31,7 @@ export function ImageWithFallback({
         }}
         {...props}
       />
-      {isLoading && (
-        <div className="absolute inset-0 bg-muted/10 animate-pulse" />
-      )}
+      {isLoading && <div className="absolute inset-0 bg-muted/10" />}
     </div>
   );
 }

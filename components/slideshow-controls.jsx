@@ -51,7 +51,7 @@ export function SlideshowControls({
             value={interval.toString()}
             onValueChange={(value) => onIntervalChange(parseInt(value))}
           >
-            <SelectTrigger className="w-[70px]">
+            <SelectTrigger className="w-[55px] h-8 px-2 py-1 text-xs rounded-sm">
               <SelectValue placeholder="Interval">
                 {formatTriggerValue(interval)}
               </SelectValue>
