@@ -81,6 +81,10 @@
     font-family: var(--font-gujarati), system-ui, sans-serif;
   }
 
+  .text-punjabi {
+    font-family: var(--font-punjabi), system-ui, sans-serif;
+  }
+
   /* Telugu text size adjustments */
   .text-telugu.text-xs {
     font-size: 1rem;
@@ -108,6 +112,37 @@
   }
 
   .text-telugu.text-2xl {
+    font-size: 1.75rem;
+    line-height: 2.5rem;
+  }
+
+  /* Punjabi text size adjustments */
+  .text-punjabi.text-xs {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .text-punjabi.text-sm {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .text-punjabi.text-base {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+  }
+
+  .text-punjabi.text-lg {
+    font-size: 1.375rem;
+    line-height: 2rem;
+  }
+
+  .text-punjabi.text-xl {
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+  }
+
+  .text-punjabi.text-2xl {
     font-size: 1.75rem;
     line-height: 2.5rem;
   }

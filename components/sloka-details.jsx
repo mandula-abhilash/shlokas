@@ -24,6 +24,9 @@ export default function SlokaDetails({ sloka, language, isMobile = false }) {
     if (language === "gujarati") {
       return `text-gujarati ${size} ${baseClass}`;
     }
+    if (language === "punjabi") {
+      return `text-punjabi ${size} ${baseClass}`;
+    }
     return `${size} ${baseClass}`;
   };
 

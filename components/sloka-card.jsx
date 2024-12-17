@@ -20,6 +20,7 @@ export default function SlokaCard({
   const getLanguageClass = (lang, size) => {
     if (lang === "telugu") return `text-telugu ${size}`;
     if (lang === "gujarati") return `text-gujarati ${size}`;
+    if (lang === "punjabi") return `text-punjabi ${size}`;
     return size;
   };
 

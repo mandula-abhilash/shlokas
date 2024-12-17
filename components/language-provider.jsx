@@ -11,6 +11,7 @@ export function LanguageProvider({ children }) {
     { value: "english", label: "English" },
     { value: "telugu", label: "తెలుగు" },
     { value: "gujarati", label: "ગુજરાતી" },
+    { value: "punjabi", label: "ਪੰਜਾਬੀ" },
   ];
 
   const value = {
